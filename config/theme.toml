@@ -1,0 +1,10 @@
+[selection]
+fg = "light_yellow"
+bold = true
+
+[source]
+fg = "light_blue"
+bold = true
+
+[message]
+fg = "whtie"

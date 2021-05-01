@@ -1,0 +1,82 @@
+[[mapcommand]]
+command = "cursor_move_left"
+keys = [ "left" ]
+[[mapcommand]]
+command = "cursor_move_right"
+keys = [ "right" ]
+
+[[mapcommand]]
+command = "cursor_move_up"
+keys = [ "up" ]
+[[mapcommand]]
+command = "cursor_move_down"
+keys = [ "down" ]
+[[mapcommand]]
+command = "cursor_move_end"
+keys = [ "end" ]
+[[mapcommand]]
+command = "cursor_move_home"
+keys = [ "home" ]
+[[mapcommand]]
+command = "cursor_move_page_up"
+keys = [ "page_up" ]
+[[mapcommand]]
+command = "cursor_move_page_down"
+keys = [ "page_down" ]
+
+[[mapcommand]]
+command = "cursor_move_up"
+keys = [ "k" ]
+[[mapcommand]]
+command = "cursor_move_down"
+keys = [ "j" ]
+
+[[mapcommand]]
+command = "quit"
+keys = [ "q" ]
+[[mapcommand]]
+command = "quit"
+keys = [ "ctrl+q" ]
+[[mapcommand]]
+command = "force_quit"
+keys = [ "Q" ]
+
+[[mapcommand]]
+command = "reload_list"
+keys = [ "R" ]
+
+[[mapcommand]]
+command = "select --toggle=true"
+keys = [ " " ]
+[[mapcommand]]
+command = "select --toggle=true --all=true"
+keys = [ "t" ]
+
+[[mapcommand]]
+command = ":search "
+keys = [ "/" ]
+[[mapcommand]]
+command = ":search_glob "
+keys = [ "\\" ]
+[[mapcommand]]
+command = "search_next"
+keys = [ "n" ]
+[[mapcommand]]
+command = "search_prev"
+keys = [ "N" ]
+
+[[mapcommand]]
+command = "sort reverse"
+keys = [ "s", "r" ]
+[[mapcommand]]
+command = "sort lexical"
+keys = [ "s", "l" ]
+[[mapcommand]]
+command = "sort mtime"
+keys = [ "s", "m" ]
+[[mapcommand]]
+command = "sort natural"
+keys = [ "s", "n" ]
+[[mapcommand]]
+command = "sort size"
+keys = [ "s", "s" ]
