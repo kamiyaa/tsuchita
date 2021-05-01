@@ -14,6 +14,7 @@ I just want to be able to see missed notifications on a window manager.
 
 - [cargo](https://github.com/rust-lang/cargo/)
 - [rustc](https://www.rust-lang.org/)
+- [libdbus](https://www.freedesktop.org/wiki/Software/dbus/)
 
 Also see [Cargo.toml](Cargo.toml)
 
