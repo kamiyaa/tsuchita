@@ -33,12 +33,8 @@ lazy_static! {
 }
 #[derive(Clone, Debug, StructOpt)]
 pub struct Args {
-    #[structopt(long = "path", parse(from_os_str))]
-    path: Option<PathBuf>,
     #[structopt(short = "v", long = "version")]
     version: bool,
-    #[structopt(long = "lastdir", parse(from_os_str))]
-    last_dir: Option<PathBuf>,
 }
 
 async fn run_tsuchita(args: Args) -> std::io::Result<()> {

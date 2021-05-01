@@ -20,8 +20,6 @@ use crate::config::{AppConfig, AppKeyMapping, AppTheme, ConfigStructure};
 use crate::context::AppContext;
 use crate::run::run;
 use crate::tree::DbusTreeTrait;
-
-const PROGRAM_NAME: &str = "tsuchita";
 const CONFIG_FILE: &str = "tsuchita.toml";
 const KEYMAP_FILE: &str = "keymap.toml";
 const THEME_FILE: &str = "theme.toml";
@@ -46,12 +44,8 @@ lazy_static! {
 
 #[derive(Clone, Debug, StructOpt)]
 pub struct Args {
-    #[structopt(long = "path", parse(from_os_str))]
-    path: Option<PathBuf>,
     #[structopt(short = "v", long = "version")]
     version: bool,
-    #[structopt(long = "lastdir", parse(from_os_str))]
-    last_dir: Option<PathBuf>,
 }
 
 fn run_tsuchita(args: Args) -> std::io::Result<()> {
@@ -83,7 +77,6 @@ fn run_tsuchita(args: Args) -> std::io::Result<()> {
     let res = context
         .tree_mut()
         .fetch_sources(url.as_str(), &display_options);
-    eprintln!("res: {:?}", res);
 
     let curr_source = context
         .tree_ref()
@@ -95,7 +88,6 @@ fn run_tsuchita(args: Args) -> std::io::Result<()> {
         let res = context
             .tree_mut()
             .fetch_messages(url.as_str(), source, &display_options);
-        eprintln!("res: {:?}", res);
     }
 
     let mut backend: ui::TuiBackend = ui::TuiBackend::new()?;

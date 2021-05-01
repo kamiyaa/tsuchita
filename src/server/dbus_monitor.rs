@@ -29,7 +29,6 @@ pub fn handle_message(message: &Message) {
                 .entry(t_message.source().to_string())
                 .or_insert(vec![])
                 .push(t_message);
-            println!("{:#?}", *notification_center);
         }
         Err(e) => {
             println!("Error: {:?}", e);
