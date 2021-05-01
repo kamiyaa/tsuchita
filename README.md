@@ -2,7 +2,7 @@
 
 # tsuchita
 
-A command line notification center for dbus desktop notifications.
+A client-server notification center for dbus desktop notifications.
 
 Specifically `org.freedesktop.Notifications` dbus messages.
 
