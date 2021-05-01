@@ -4,6 +4,11 @@ url = "127.0.0.1:9991"
 [client]
 server_url = "127.0.0.1:9991"
 # see chrono::format::strftime for more details
+
 [client.display]
 timezone = "local"
 date_format = "%Y-%m-%d %I:%M %p"
+
+[client.sort]
+reverse = true
+sort_method = "mtime"
