@@ -11,10 +11,10 @@ use std::collections::HashMap;
 use std::sync::Mutex;
 use std::time::{Duration, SystemTime};
 
-pub type NotificationCenter = HashMap<String, Vec<TsuchitaMessage>>;
+pub type Notifications = HashMap<String, Vec<TsuchitaMessage>>;
 
 lazy_static! {
-    static ref NOTIFICATION_CENTER: Mutex<NotificationCenter> = Mutex::new(NotificationCenter::default());
+    static ref NOTIFICATIONS: Mutex<Notifications> = Mutex::new(Notifications::default());
 }
 
 pub fn handle_message(message: &Message) {
@@ -24,8 +24,11 @@ pub fn handle_message(message: &Message) {
         Ok((source, _, _, title, content)) => {
             let timestamp = SystemTime::now();
             let t_message = TsuchitaMessage::new(source, title, content, timestamp);
-            let mut notification_center = NOTIFICATION_CENTER.lock().unwrap();
-            notification_center.entry(t_message.source().to_string()).or_insert(vec![]).push(t_message);
+            let mut notification_center = NOTIFICATIONS.lock().unwrap();
+            notification_center
+                .entry(t_message.source().to_string())
+                .or_insert(vec![])
+                .push(t_message);
             println!("{:#?}", *notification_center);
         }
         Err(e) => {
@@ -35,13 +38,13 @@ pub fn handle_message(message: &Message) {
 }
 
 pub fn get_sources() -> Vec<String> {
-    let notification_center = NOTIFICATION_CENTER.lock().unwrap();
+    let notification_center = NOTIFICATIONS.lock().unwrap();
     let sources = notification_center.keys().map(|s| s.to_string()).collect();
     sources
 }
 
 pub fn get_messages(source: &str) -> Vec<TsuchitaMessage> {
-    let notification_center = NOTIFICATION_CENTER.lock().unwrap();
+    let notification_center = NOTIFICATIONS.lock().unwrap();
     match notification_center.get(source) {
         Some(v) => v.clone(),
         None => vec![],

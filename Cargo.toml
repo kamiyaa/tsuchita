@@ -13,16 +13,26 @@ name = "tsuchita-server"
 path = "src/server/main.rs"
 
 [[bin]]
-name = "tsuchita-viewer"
+name = "tsuchita"
 path = "src/client/main.rs"
 
 [dependencies]
 actix-web = "^3"
+alphanumeric-sort = "^1"
 chrono = "^0"
 dbus = "^0"
+globset = "^0"
 lazy_static = "^1"
 serde = "^1"
+serde_derive = "^1"
+shell-words = "^1"
+signal-hook = "^0"
+structopt = "^0"
 termion = "^1"
 toml = "^0"
 tui = "^0"
 unicode-width = "^0"
+ureq = { version = "^2", features = ["json", "charset"] }
+xdg = "^2"
+
+
