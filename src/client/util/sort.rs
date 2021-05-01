@@ -3,7 +3,7 @@ use std::time;
 
 use serde_derive::Deserialize;
 
-use crate::fs::{EntryType, TsuchitaEntry, TsuchitaList, TsuchitaMessage};
+use crate::fs::{EntryType, TsuchitaEntry};
 
 #[derive(Clone, Copy, Debug, Deserialize)]
 pub enum SortType {

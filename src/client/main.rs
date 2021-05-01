@@ -8,8 +8,6 @@ mod tree;
 mod ui;
 mod util;
 
-use std::fs::File;
-use std::io::prelude::*;
 use std::path::PathBuf;
 use std::process;
 
@@ -20,6 +18,8 @@ use crate::config::{AppConfig, AppKeyMapping, AppTheme, ConfigStructure};
 use crate::context::AppContext;
 use crate::run::run;
 use crate::tree::DbusTreeTrait;
+
+const PROGRAM_NAME: &str = "tsuchita";
 const CONFIG_FILE: &str = "tsuchita.toml";
 const KEYMAP_FILE: &str = "keymap.toml";
 const THEME_FILE: &str = "theme.toml";
@@ -54,15 +54,6 @@ fn run_tsuchita(args: Args) -> std::io::Result<()> {
         println!("{}", version);
         return Ok(());
     }
-    if let Some(p) = args.path.as_ref() {
-        match std::env::set_current_dir(p.as_path()) {
-            Ok(_) => {}
-            Err(e) => {
-                eprintln!("{}", e);
-                process::exit(1);
-            }
-        }
-    }
 
     let config = AppConfig::get_config(CONFIG_FILE);
     let keymap = AppKeyMapping::get_config(KEYMAP_FILE);
@@ -74,7 +65,7 @@ fn run_tsuchita(args: Args) -> std::io::Result<()> {
         .client_ref()
         .display_options_ref()
         .clone();
-    let res = context
+    let _ = context
         .tree_mut()
         .fetch_sources(url.as_str(), &display_options);
 
@@ -85,7 +76,7 @@ fn run_tsuchita(args: Args) -> std::io::Result<()> {
         .and_then(|entry| Some(entry.name().to_string()));
 
     if let Some(source) = curr_source.as_ref() {
-        let res = context
+        let _ = context
             .tree_mut()
             .fetch_messages(url.as_str(), source, &display_options);
     }

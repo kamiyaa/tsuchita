@@ -1,5 +1,3 @@
-use std::io;
-
 use termion::event::Event;
 
 use crate::commands::{CommandKeybind, KeyCommand};

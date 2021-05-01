@@ -75,6 +75,4 @@ pub fn listen() -> Result<(), dbus::Error> {
     loop {
         conn.process(duration).unwrap();
     }
-
-    Ok(())
 }

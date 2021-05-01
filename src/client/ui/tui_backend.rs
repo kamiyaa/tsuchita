@@ -39,7 +39,7 @@ impl New for Screen {
 pub type TsuchitaTerminal = tui::Terminal<TermionBackend<Screen>>;
 
 pub struct TuiBackend {
-    pub terminal: Option<TsuchitaTerminal>,
+    pub terminal: TsuchitaTerminal,
 }
 
 impl TuiBackend {
@@ -51,9 +51,7 @@ impl TuiBackend {
         let backend = TermionBackend::new(alt_screen);
         let mut terminal = tui::Terminal::new(backend)?;
         terminal.hide_cursor()?;
-        Ok(Self {
-            terminal: Some(terminal),
-        })
+        Ok(Self { terminal: terminal })
     }
 
     pub fn render<W>(&mut self, widget: W)
@@ -67,17 +65,6 @@ impl TuiBackend {
     }
 
     pub fn terminal_mut(&mut self) -> &mut TsuchitaTerminal {
-        self.terminal.as_mut().unwrap()
-    }
-
-    pub fn terminal_drop(&mut self) {
-        let _ = self.terminal.take();
-        let _ = stdout().flush();
-    }
-
-    pub fn terminal_restore(&mut self) -> std::io::Result<()> {
-        let mut new_backend = TuiBackend::new()?;
-        std::mem::swap(&mut self.terminal, &mut new_backend.terminal);
-        Ok(())
+        &mut self.terminal
     }
 }

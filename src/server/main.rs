@@ -13,8 +13,6 @@ use crate::config::{AppConfig, ConfigStructure};
 
 const PROGRAM_NAME: &str = "tsuchita";
 const CONFIG_FILE: &str = "tsuchita.toml";
-const KEYMAP_FILE: &str = "keymap.toml";
-const THEME_FILE: &str = "theme.toml";
 
 lazy_static! {
     // dynamically builds the config hierarchy
@@ -58,7 +56,7 @@ async fn run_tsuchita(args: Args) -> std::io::Result<()> {
     });
 
     println!("Running HTTP server on {}", config.server_ref().url);
-    server::serve(&config).await;
+    let _ = server::serve(&config).await;
 
     Ok(())
 }
@@ -67,5 +65,5 @@ async fn run_tsuchita(args: Args) -> std::io::Result<()> {
 async fn main() {
     let args = Args::from_args();
 
-    run_tsuchita(args).await;
+    let _ = run_tsuchita(args).await;
 }

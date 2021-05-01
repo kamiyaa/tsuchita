@@ -1,7 +1,6 @@
 use serde_derive::Deserialize;
-use std::collections::HashMap;
 
-use tui::style::{Color, Modifier};
+use tui::style::Color;
 
 use super::{AppStyle, RawAppStyle};
 use crate::config::{parse_to_config_file, ConfigStructure, Flattenable};

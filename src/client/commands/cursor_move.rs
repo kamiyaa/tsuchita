@@ -1,8 +1,8 @@
-use std::collections::{hash_map::Entry, HashMap};
+use std::collections::hash_map::Entry;
 
 use crate::context::AppContext;
 use crate::error::AppResult;
-use crate::fs::{EntryType, TsuchitaEntry, TsuchitaList, TsuchitaMessage};
+use crate::fs::EntryType;
 use crate::tree::DbusTreeTrait;
 use crate::ui::TuiBackend;
 
@@ -34,7 +34,7 @@ pub fn cursor_move(mut new_index: usize, context: &mut AppContext) -> AppResult<
                 .clone();
             match context.tree_mut().entry(source.clone()) {
                 Entry::Occupied(entry) => {
-                    if (entry.get().needs_update()) {
+                    if entry.get().needs_update() {
                         context.tree_mut().fetch_messages(
                             url.as_str(),
                             source.as_str(),
@@ -148,10 +148,8 @@ pub fn end(context: &mut AppContext) -> AppResult<()> {
 
 pub fn page_up(context: &mut AppContext, backend: &mut TuiBackend) -> AppResult<()> {
     let half_page = {
-        match backend.terminal.as_ref().unwrap().size() {
-            Ok(rect) => rect.height as usize - 2,
-            _ => 10,
-        }
+        let rect = backend.terminal.size().unwrap();
+        rect.height as usize - 2
     };
 
     let movement = match context.curr_list_ref() {
@@ -169,10 +167,8 @@ pub fn page_up(context: &mut AppContext, backend: &mut TuiBackend) -> AppResult<
 
 pub fn page_down(context: &mut AppContext, backend: &mut TuiBackend) -> AppResult<()> {
     let half_page = {
-        match backend.terminal.as_ref().unwrap().size() {
-            Ok(rect) => rect.height as usize - 2,
-            _ => 10,
-        }
+        let rect = backend.terminal.size().unwrap();
+        rect.height as usize - 2
     };
 
     let movement = match context.curr_list_ref() {

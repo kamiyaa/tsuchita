@@ -4,7 +4,7 @@ use tui::style::{Color, Modifier, Style};
 use tui::widgets::Widget;
 use unicode_width::UnicodeWidthStr;
 
-use crate::fs::{EntryType, TsuchitaEntry, TsuchitaList};
+use crate::fs::{TsuchitaEntry, TsuchitaList};
 use crate::util::style;
 
 const ELLIPSIS: &str = "…";

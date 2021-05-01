@@ -1,14 +1,12 @@
 use tui::buffer::Buffer;
 use tui::layout::{Constraint, Direction, Layout, Rect};
 use tui::style::{Color, Style};
-use tui::text::Span;
-use tui::widgets::{Block, Borders, Paragraph, Widget, Wrap};
+use tui::widgets::{Block, Borders, Widget};
 
 use crate::context::AppContext;
 use crate::fs::EntryType;
 use crate::tree::DbusTreeTrait;
 use crate::ui::widgets::{TuiEntryList, TuiInboxMessage, TuiTopBar};
-use crate::util::format;
 
 pub struct TuiView<'a> {
     context: &'a AppContext,
@@ -97,7 +95,8 @@ impl<'a> Widget for TuiView<'a> {
                 TuiEntryList::new(list).render(layout_rect[1], buf);
                 if let Some(entry) = list.curr_entry_ref() {
                     if let EntryType::Message(message) = entry.get_type() {
-                        TuiInboxMessage::new(message).render(layout_rect[2], buf);
+                        let display_options = self.context.config_ref().display_options_ref();
+                        TuiInboxMessage::new(message, display_options).render(layout_rect[2], buf);
                     }
                 }
             }

@@ -1,5 +1,3 @@
-use std::fs;
-
 use tui::layout::Constraint;
 
 use crate::util::sort;
@@ -13,6 +11,8 @@ pub struct DisplayOption {
     pub column_ratio: (usize, usize, usize),
     pub _show_borders: bool,
     pub _sort_options: sort::SortOption,
+    pub _timezone: String,
+    pub _date_format: String,
     pub default_layout: [Constraint; 3],
     pub no_preview_layout: [Constraint; 3],
 }
@@ -28,6 +28,12 @@ impl DisplayOption {
 
     pub fn sort_options_mut(&mut self) -> &mut sort::SortOption {
         &mut self._sort_options
+    }
+    pub fn timezone(&self) -> &str {
+        self._timezone.as_str()
+    }
+    pub fn date_format(&self) -> &str {
+        self._date_format.as_str()
     }
 }
 
@@ -51,6 +57,9 @@ impl std::default::Default for DisplayOption {
             column_ratio,
             _show_borders: true,
             _sort_options: sort::SortOption::default(),
+            _timezone: "local".to_string(),
+            _date_format: "%Y-%m-%d %I:%M %p".to_string(),
+
             default_layout,
             no_preview_layout,
         }

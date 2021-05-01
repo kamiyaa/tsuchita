@@ -157,18 +157,20 @@ impl KeyCommand {
             Self::Quit => quit::quit(context),
             Self::ForceQuit => quit::force_quit(context),
 
-            Self::ReloadList => reload::reload_list(context),
+            /*
+                        Self::ReloadList => reload::reload_list(context),
 
-            Self::SearchGlob(pattern) => search_glob::search_glob(context, pattern.as_str()),
-            Self::SearchString(pattern) => search_string::search_string(context, pattern.as_str()),
-            Self::SearchNext => search::search_next(context),
-            Self::SearchPrev => search::search_prev(context),
-
-            Self::Select(pattern, options) => {
-                selection::select(context, pattern.as_str(), &options)
-            }
-            Self::Sort(t) => sort::set_sort(context, *t),
-            Self::SortReverse => sort::toggle_reverse(context),
+                        Self::SearchGlob(pattern) => search_glob::search_glob(context, pattern.as_str()),
+                        Self::SearchString(pattern) => search_string::search_string(context, pattern.as_str()),
+                        Self::SearchNext => search::search_next(context),
+                        Self::SearchPrev => search::search_prev(context),
+                        Self::Select(pattern, options) => {
+                            selection::select(context, pattern.as_str(), &options)
+                        }
+                        Self::Sort(t) => sort::set_sort(context, *t),
+                        Self::SortReverse => sort::toggle_reverse(context),
+            */
+            _ => Ok(()),
         }
     }
 }

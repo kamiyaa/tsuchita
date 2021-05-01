@@ -11,7 +11,7 @@ async fn get_sources() -> impl Responder {
 }
 
 #[get("/source/{source}/messages/")]
-async fn get_messages(web::Path((source)): web::Path<(String)>) -> impl Responder {
+async fn get_messages(web::Path(source): web::Path<String>) -> impl Responder {
     eprintln!("GET /source/{}/messages/", source);
     let messages = dbus_monitor::get_messages(source.as_str());
     HttpResponse::Ok().json(messages)

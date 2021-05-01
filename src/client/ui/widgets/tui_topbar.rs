@@ -1,10 +1,7 @@
-use std::path::Path;
-
 use tui::buffer::Buffer;
 use tui::layout::Rect;
-use tui::style::{Color, Modifier, Style};
-use tui::text::{Span, Spans};
-use tui::widgets::{Paragraph, Widget};
+use tui::style::Style;
+use tui::widgets::Widget;
 
 use crate::context::AppContext;
 

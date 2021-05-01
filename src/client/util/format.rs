@@ -1,7 +1,11 @@
 use std::time;
-pub fn mtime_to_string(mtime: time::SystemTime) -> String {
-    const MTIME_FORMATTING: &str = "%Y-%m-%d %H:%M";
 
-    let datetime: chrono::DateTime<chrono::offset::Utc> = mtime.into();
-    datetime.format(MTIME_FORMATTING).to_string()
+pub fn time_to_local(systime: time::SystemTime, date_format: &str) -> String {
+    let datetime: chrono::DateTime<chrono::offset::Local> = systime.into();
+    datetime.format(date_format).to_string()
+}
+
+pub fn time_to_utc(systime: time::SystemTime, date_format: &str) -> String {
+    let datetime: chrono::DateTime<chrono::offset::Utc> = systime.into();
+    datetime.format(date_format).to_string()
 }

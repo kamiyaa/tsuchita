@@ -1,5 +1,4 @@
 use std::collections::HashMap;
-use std::path;
 
 use crate::fs::{EntryType, TsuchitaEntry, TsuchitaList, TsuchitaMessage};
 use crate::util::display::DisplayOption;
@@ -55,7 +54,8 @@ impl DbusTreeTrait for DbusTree {
         let mut contents: Vec<TsuchitaEntry> = json_res
             .drain(..)
             .map(|m| {
-                let name = format!("{} {}", format::mtime_to_string(m.timestamp()), m.title());
+                let timestamp = format::time_to_local(m.timestamp(), display_options.date_format());
+                let name = format!("{} {}", timestamp, m.title());
                 TsuchitaEntry::new(name, EntryType::Message(m))
             })
             .collect();

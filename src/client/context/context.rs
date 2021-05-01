@@ -1,13 +1,10 @@
-use std::collections::HashMap;
 use std::sync::mpsc;
 
 use crate::config::AppConfig;
 use crate::fs::TsuchitaList;
 use crate::tree::DbusTree;
-use crate::util::display::DisplayOption;
 use crate::util::event::{Events, TsuchitaEvent};
 use crate::util::search::SearchPattern;
-use crate::util::sort::SortOption;
 
 pub struct AppContext {
     pub exit: bool,

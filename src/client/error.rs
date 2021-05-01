@@ -1,5 +1,3 @@
-use std::io::ErrorKind;
-
 #[derive(Copy, Clone, Debug)]
 pub enum AppErrorKind {
     IoInvalidData,
