@@ -81,7 +81,11 @@ Please create an issue :)
 
 ### Server
 - [ ] database store
+- [ ] CRUD
 
-### Client
+### Terminal Client
 - [x] tui interface
+- [ ] CRUD
 
+### GUI Client
+TODO
