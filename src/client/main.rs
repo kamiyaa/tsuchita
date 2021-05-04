@@ -16,6 +16,7 @@ use structopt::StructOpt;
 
 use crate::config::{AppConfig, AppKeyMapping, AppTheme, ConfigStructure};
 use crate::context::AppContext;
+use crate::error::AppResult;
 use crate::run::run;
 use crate::tree::DbusTreeTrait;
 
@@ -48,7 +49,7 @@ pub struct Args {
     version: bool,
 }
 
-fn run_tsuchita(args: Args) -> std::io::Result<()> {
+fn run_tsuchita(args: Args) -> AppResult<()> {
     if args.version {
         let version = env!("CARGO_PKG_VERSION");
         println!("{}", version);
@@ -60,14 +61,15 @@ fn run_tsuchita(args: Args) -> std::io::Result<()> {
 
     let mut context = AppContext::new(config);
     let url = context.config_ref().server_ref().url.clone();
+
     let display_options = context
         .config_ref()
         .client_ref()
         .display_options_ref()
         .clone();
-    let _ = context
+    context
         .tree_mut()
-        .fetch_sources(url.as_str(), &display_options);
+        .fetch_sources(url.as_str(), &display_options)?;
 
     let curr_source = context
         .tree_ref()
@@ -76,9 +78,9 @@ fn run_tsuchita(args: Args) -> std::io::Result<()> {
         .and_then(|entry| Some(entry.name().to_string()));
 
     if let Some(source) = curr_source.as_ref() {
-        let _ = context
+        context
             .tree_mut()
-            .fetch_messages(url.as_str(), source, &display_options);
+            .fetch_messages(url.as_str(), source, &display_options)?;
     }
 
     let mut backend: ui::TuiBackend = ui::TuiBackend::new()?;

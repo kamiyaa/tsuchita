@@ -5,7 +5,8 @@ use crate::config::AppKeyMapping;
 use crate::context::AppContext;
 use crate::ui::views::TuiView;
 use crate::ui::TuiBackend;
-use crate::util::event::TsuchitaEvent;
+use crate::util::event::AppEvent;
+use crate::util::input;
 
 pub fn run(
     backend: &mut TuiBackend,
@@ -21,10 +22,10 @@ pub fn run(
         };
 
         match event {
-            TsuchitaEvent::Termion(Event::Mouse(event)) => {
+            AppEvent::Termion(Event::Mouse(event)) => {
                 context.flush_event();
             }
-            TsuchitaEvent::Termion(key) => {
+            AppEvent::Termion(key) => {
                 match keymap_t.as_ref().get(&key) {
                     None => {
                         // handle error
@@ -50,9 +51,7 @@ pub fn run(
                 }
                 context.flush_event();
             }
-            event => {
-                context.flush_event();
-            }
+            event => input::process_noninteractive(event, context),
         }
     }
     Ok(())

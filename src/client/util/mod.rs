@@ -1,6 +1,7 @@
 pub mod display;
 pub mod event;
 pub mod format;
+pub mod input;
 pub mod key_mapping;
 pub mod search;
 pub mod select;

@@ -3,7 +3,7 @@ use std::sync::mpsc;
 use crate::config::AppConfig;
 use crate::fs::TsuchitaList;
 use crate::tree::DbusTree;
-use crate::util::event::{Events, TsuchitaEvent};
+use crate::util::event::{AppEvent, Events};
 use crate::util::search::SearchPattern;
 
 pub struct AppContext {
@@ -31,10 +31,10 @@ impl AppContext {
         }
     }
     // event related
-    pub fn poll_event(&self) -> Result<TsuchitaEvent, mpsc::RecvError> {
+    pub fn poll_event(&self) -> Result<AppEvent, mpsc::RecvError> {
         self.events.next()
     }
-    pub fn get_event_tx(&self) -> mpsc::Sender<TsuchitaEvent> {
+    pub fn get_event_tx(&self) -> mpsc::Sender<AppEvent> {
         self.events.event_tx.clone()
     }
     pub fn flush_event(&self) {

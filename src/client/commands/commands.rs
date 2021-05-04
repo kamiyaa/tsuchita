@@ -132,7 +132,7 @@ impl KeyCommand {
                     Some(s) => Ok(Self::Sort(s)),
                     None => Err(AppError::new(
                         AppErrorKind::IoInvalidData,
-                        format!("sort: Unknown option {}", arg),
+                        format!("sort: Unknown option '{}'", arg),
                     )),
                 },
             },
