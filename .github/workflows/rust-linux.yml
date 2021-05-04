@@ -15,7 +15,7 @@ jobs:
         rust: [stable]
     steps:
       - uses: actions/checkout@v2
-      - name: Install libdbus
+      - name: Install libdbus-1-dev
         run: sudo apt-get install libdbus
       - name: Install minimal ${{ matrix.rust }} rust
         uses: actions-rs/toolchain@v1
