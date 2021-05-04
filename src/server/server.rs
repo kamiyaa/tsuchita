@@ -3,6 +3,18 @@ use actix_web::{get, web, App, HttpResponse, HttpServer, Responder};
 use crate::config::AppConfig;
 use crate::dbus_monitor;
 
+pub async fn serve(config: &AppConfig) -> std::io::Result<()> {
+    HttpServer::new(|| {
+        App::new()
+            .service(get_sources)
+            .service(get_messages)
+            .service(ping)
+    })
+    .bind(config.server_ref().url.as_str())?
+    .run()
+    .await
+}
+
 #[get("/sources/")]
 async fn get_sources() -> impl Responder {
     eprintln!("GET /sources");
@@ -17,9 +29,7 @@ async fn get_messages(web::Path(source): web::Path<String>) -> impl Responder {
     HttpResponse::Ok().json(messages)
 }
 
-pub async fn serve(config: &AppConfig) -> std::io::Result<()> {
-    HttpServer::new(|| App::new().service(get_sources).service(get_messages))
-        .bind(config.server_ref().url.as_str())?
-        .run()
-        .await
+#[get("/")]
+async fn ping() -> impl Responder {
+    HttpResponse::Ok()
 }
