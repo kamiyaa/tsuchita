@@ -1,4 +1,5 @@
-[![Rust](https://github.com/kamiyaa/tsuchita/actions/workflows/rust-linux.yml/badge.svg)](https://github.com/kamiyaa/tsuchita/actions/workflows/rust-linux.yml)
+[![Linux Build](https://github.com/kamiyaa/tsuchita/actions/workflows/rust-linux.yml/badge.svg)](https://github.com/kamiyaa/tsuchita/actions/workflows/rust-linux.yml)
+
 # tsuchita
 
 A client-server notification center for dbus desktop notifications.
