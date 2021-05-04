@@ -77,6 +77,3 @@ keys = [ "s", "m" ]
 [[mapcommand]]
 command = "sort natural"
 keys = [ "s", "n" ]
-[[mapcommand]]
-command = "sort size"
-keys = [ "s", "s" ]
