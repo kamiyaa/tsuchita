@@ -1,18 +1,18 @@
-name: Rust
+name: Rust Linux
 
 on:
   push:
-    branches: [master]
+    branches: [main]
   pull_request:
-    branches: [master]
+    branches: [main]
 
 jobs:
   check:
-    name: Rust ${{ matrix.rust }}
+    name: Rust Linux ${{ matrix.rust }}
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        rust: [1.49.0, stable, beta]
+        rust: [stable]
     steps:
       - uses: actions/checkout@v2
       - name: Install minimal ${{ matrix.rust }} rust
@@ -21,6 +21,7 @@ jobs:
           override: true
           profile: minimal
           toolchain: ${{ matrix.rust }}
+      - run: apt install libdbus
       - run: cargo -Vv && rustc -Vv
       - run: cargo check
       - run: cargo check --all-features
