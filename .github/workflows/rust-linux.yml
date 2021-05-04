@@ -15,13 +15,14 @@ jobs:
         rust: [stable]
     steps:
       - uses: actions/checkout@v2
+      - name: Install libdbus
+        run: sudo apt-get install libdbus
       - name: Install minimal ${{ matrix.rust }} rust
         uses: actions-rs/toolchain@v1
         with:
           override: true
           profile: minimal
           toolchain: ${{ matrix.rust }}
-      - run: apt install libdbus
       - run: cargo -Vv && rustc -Vv
       - run: cargo check
       - run: cargo check --all-features
