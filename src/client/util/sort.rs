@@ -95,9 +95,9 @@ impl std::default::Default for SortOption {
 fn mtime_sort(a: &TsuchitaEntry, b: &TsuchitaEntry) -> cmp::Ordering {
     match (a.get_type(), b.get_type()) {
         (EntryType::Message(a), EntryType::Message(b)) => {
-            let a_mtime: time::SystemTime = a.timestamp();
-            let b_mtime: time::SystemTime = b.timestamp();
-            if a_mtime >= b_mtime {
+            let a_mtime = a.timestamp();
+            let b_mtime = b.timestamp();
+            if a_mtime <= b_mtime {
                 cmp::Ordering::Less
             } else {
                 cmp::Ordering::Greater

@@ -59,6 +59,8 @@ fn run_tsuchita(args: Args) -> AppResult<()> {
     let config = AppConfig::get_config(CONFIG_FILE);
     let keymap = AppKeyMapping::get_config(KEYMAP_FILE);
 
+    eprintln!("config: {:#?}", config);
+
     let mut context = AppContext::new(config);
     let url = context.config_ref().server_ref().url.clone();
 

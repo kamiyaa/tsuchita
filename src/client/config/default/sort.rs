@@ -19,8 +19,8 @@ pub struct SortRawOption {
 impl SortRawOption {
     pub fn into(self) -> sort::SortOption {
         let sort_method = match self.sort_method.as_ref() {
-            Some(s) => sort::SortType::parse(s).unwrap_or(sort::SortType::Natural),
-            None => sort::SortType::Natural,
+            Some(s) => sort::SortType::parse(s).unwrap_or(sort::SortType::Mtime),
+            None => sort::SortType::Mtime,
         };
         sort::SortOption {
             case_sensitive: self.case_sensitive,
